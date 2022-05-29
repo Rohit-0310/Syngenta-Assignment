@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const connect = () => {
-    return mongoose.connect("mongodb://127.0.0.1:27017/ass-1")
+    return mongoose.connect("mongodb+srv://rohit:rohit@cluster0.uy4ecec.mongodb.net/Swiggy")
 }
 
 module.exports = connect
