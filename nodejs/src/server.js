@@ -12,6 +12,8 @@ const categoryController = require("./controllers/category.controller");
 const locationController = require("./controllers/location.controller");
 const disheController = require("./controllers/dishe.controller");
 
+const cartController = require("./controllers/cart.controller")
+
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use("/restaurants", restaurantcontroller);
 app.use("/category", categoryController);
 app.use("/location", locationController);
 app.use("/dishe", disheController);
+
+app.use("/cart",cartController);
 
 
 
