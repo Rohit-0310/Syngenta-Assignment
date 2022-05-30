@@ -33,7 +33,7 @@ router.get("/", async(req, res)=> {
 
 
 router.get("/:id", async(req, res)=> {
-    const dishes = await Dishe.find()
+    const dishe = await Dishe.findById(req.params.id)
     .populate({
         path:'location',
         select:"name"
@@ -45,7 +45,7 @@ router.get("/:id", async(req, res)=> {
         select:"name"
     }).lean().exec();
 
-    return res.status(200).send({dishes});
+    return res.status(200).send({dishe});
 })
 // router.get("/:id", crudController.getOne(Dishe))
 router.patch("/:id", crudController.updateOne(Dishe))

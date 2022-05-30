@@ -9,19 +9,33 @@ const router = express.Router();
 
 router.post("", crudController.post(Cart));
 
-router.get("", crudController.get(Cart))
+// router.get("", crudController.get(Cart))
 
 // get :- get all cart
-router.get("/carts", async(req, res)=> {
-    const carts = await carts.find().populate({
+router.get("/", async(req, res)=> {
+    const carts = await Cart.find()
+    .populate({
         path: 'dishe',
-        // select: 'name'
-    }).populate("category").lean().exec();
+        select: ['name','del_time']
+    }).lean().exec();
 
     return res.status(200).send({carts});
 })
 
-router.get("/:id", crudController.getOne(Cart))
+
+// get :- get all cart
+router.get("/:id", async(req, res)=> {
+    const cart = await Cart.findById(req.params.id)
+    .populate({
+        path: 'dishe',
+        select: ['name','del_time']
+    }).lean().exec();
+
+    return res.status(200).send({cart});
+})
+
+
+// router.get("/:id", crudController.getOne(Cart))
 router.patch("/:id", crudController.updateOne(Cart))
 router.delete("/:id", crudController.DeleteOne(Cart))
 
